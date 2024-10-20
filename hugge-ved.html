@@ -15,11 +15,36 @@
 
     <script>
         const horse = document.getElementById("horse");
-        let woodTxt = document.querySelector("#wood-txt");
-        let horseTxt = document.querySelector("#horse-txt");
+        let woodText = document.querySelector("#wood-txt");
+        let horseText = document.querySelector("#horse-txt");
 
         let amountOfWood = 0;
         let horses = 0;
+
+        document.addEventListener("keydown", function (event){
+            if(event.key == "w"){
+                amountOfWood += 10;
+                updateCurrency();
+            }
+        })
+
+horse.addEventListener("click", buyHorse);
+
+function buyHorse(){
+    if(amountOfWood >= 100){
+        amountOfWood -= 100;
+        horses++;
+        updateCurrency();
+    } else{
+        alert("Du har ikke nok wood!")
+    }
+}
+
+function updateCurrency(){
+    woodText.innerHTML = `Antall tre: ${amountOfWood}`
+    horseText.innerHTML = `Antall hester: ${horses}`;
+}
+
     </script>
 </body>
 
